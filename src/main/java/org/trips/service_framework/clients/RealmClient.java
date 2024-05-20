@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.trips.service_framework.aop.FeignClientAdvice;
 import org.trips.service_framework.clients.request.RealmUserSearchRequest;
 import org.trips.service_framework.clients.response.RealmClientsVerifyResponse;
 import org.trips.service_framework.clients.response.RealmSessionInfoResponse;
 import org.trips.service_framework.clients.response.RealmUserResponse;
+import org.trips.service_framework.exceptions.handlers.feignClientExceptionHandlers.RealmExceptionHandler;
 
 /**
  * @author hardikphalet
@@ -17,6 +19,7 @@ import org.trips.service_framework.clients.response.RealmUserResponse;
  */
 
 @Component
+@FeignClientAdvice(RealmExceptionHandler.class)
 @FeignClient(name = "realm", url = "${realm.base-url}")
 public interface RealmClient {
     @RequestMapping(method = RequestMethod.GET, value = "/sessioninfo")
