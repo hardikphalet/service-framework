@@ -23,7 +23,7 @@ public class UomUtils {
 
     public static BigDecimal convertQuantity(UnitOfMeasurement inputUom, UnitOfMeasurement outputUom, BigDecimal quantity) {
         if (Objects.isNull(inputUom) || Objects.isNull(outputUom)) {
-            log.warn("Received one of the UOM as null. Returning same quantity");
+            log.warn("Received one of the UOM as null. Returning same quantity. Input UOM: {}, OutputUom: {}", inputUom, outputUom);
 
             return quantity;
         }
